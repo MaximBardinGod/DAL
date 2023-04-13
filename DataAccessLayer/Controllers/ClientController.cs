@@ -3,72 +3,72 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DataAccessLayer.Controllers
 {
     public class ClientController:DbContext
     {
-        
+        [Route("/Client")]
         [ApiController]
         public class ClientsController : Controller
         {
-            private readonly ApplicationContext AppContext;
-            public ClientsController(ApplicationContext applicationContext)
+            private readonly ApplicationContext _context;
+            public ClientsController(ApplicationContext context)
             {
-                AppContext = applicationContext;
+                _context = context;
             }
 
             [HttpGet]
             public async Task<ActionResult<IEnumerable<Client>>> GetClients()
             {
-                return await AppContext.Clients.ToListAsync();
+                return await _context.Clients.ToListAsync();
             }
-            [HttpGet("GetClient/{id}")]
+
+            [HttpGet("/{id}")]
             public async Task<ActionResult<Client>> GetClient(int id)
             {
-                var client = await AppContext.Clients.FindAsync(id);
-                if (client == null) return NotFound();
-                return client;
+                if (id != 0)
+                {
+                    var client = await _context.Clients.FirstOrDefaultAsync(p => p.ClientId == id);
+                    if (client == null) return NotFound();
+                    return client;
+                }
+                else return NotFound();
             }
+        
             [HttpPost("PostClient")] //api/client/PostClient
-            public async Task<ActionResult<Client>> PostClient(Client client)
+            public async Task<ActionResult<Client>> PostClient([FromBody] Client client)
             {
-                AppContext.Clients.Add(client);
-                await AppContext.SaveChangesAsync();
+                if (client != null)
+                {
+                    _context.Clients.Add(client);
+                    await _context.SaveChangesAsync();
 
-                return CreatedAtAction(nameof(GetClients), new { id = client.ClientId }, client);
+                    return Ok(client);
+                }
+                else return BadRequest();
             }
             
 
-            [HttpPut("PutClient/{id}")] // /api/client?id=17  id=17
-            public async Task<IActionResult> PutClient([FromQuery] int id, [FromBody] Client client)
+            [HttpPut("PutClient/{id}")]
+            public async Task<IActionResult> PutClient( [FromBody] Client client)
             {
-                return id == client.ClientId ? (IActionResult)NoContent() : BadRequest();
+                if (!_context.Clients.Any(p => p.ClientId == client.ClientId)) return NotFound();
+
+                _context.Update(client);
+                await _context.SaveChangesAsync();
+                return Ok(client);
             }
-            [HttpPut("PutMentor/{id}")] // /api/client?id=17  id=17
-            public async Task<IActionResult> PutMentor([FromQuery] int id, [FromBody] Mentor mentor)
-            {
-                return id == mentor.MentorId ? (IActionResult)NoContent() : BadRequest();
-            }
+            
             [HttpDelete("DeleteClient/{id}")]
             public async Task<IActionResult> DeleteClient(int id)
             {
-                if (AppContext.Clients == null) return NotFound();
-                var client = await AppContext.Clients.FindAsync(id);
-                if (client == null) return NotFound();
-                AppContext.Clients.Remove(client);
-                await AppContext.SaveChangesAsync();
-                return NoContent();
-            }
-            [HttpDelete("DeleteMentor/{id}")]
-            public async Task<IActionResult> DeleteMentor(int id)
-            {
-                if (AppContext.Mentors == null) return NotFound();
-                var mentor = await AppContext.Mentors.FindAsync(id);
-                if (mentor == null) return NotFound();
-                AppContext.Mentors.Remove(mentor);
-                await AppContext.SaveChangesAsync();
-                return NoContent();
+                var _client = _context.Clients.FirstOrDefaultAsync(p => p.ClientId == id);
+                _context.Clients.Remove(await _client);
+                
+                await _context.SaveChangesAsync();
+                return Ok(_client);
             }
         }
     }
