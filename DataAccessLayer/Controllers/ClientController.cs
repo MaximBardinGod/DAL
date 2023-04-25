@@ -1,9 +1,6 @@
 ﻿using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer.Controllers
 {
