@@ -34,7 +34,7 @@ namespace DataAccessLayer.Controllers
                 else return NotFound();
             }
         
-            [HttpPost("PostClient")] //api/client/PostClient
+            [HttpPost("PostClient")]
             public async Task<ActionResult<Client>> PostClient([FromBody] Client client)
             {
                 if (client != null)
