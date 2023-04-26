@@ -27,12 +27,12 @@ const Navbar = () => {
 
 						<li className="nav-list__item">
 							<NavLink
-								to="/record"
+								to="/subscription"
 								className={({ isActive }) =>
 									isActive ? activeLink : normalLink
 								}
 							>
-								Record
+								Subscription
 							</NavLink>
 						</li>
 						<li className="nav-list__item">
@@ -43,6 +43,16 @@ const Navbar = () => {
 								}
 							>
 								Contacts
+							</NavLink>
+						</li>
+						<li className="nav-list__item">
+							<NavLink
+								to="/register"
+								className={({ isActive }) =>
+									isActive ? activeLink : normalLink
+								}
+							>
+								Register
 							</NavLink>
 						</li>
 					</ul>

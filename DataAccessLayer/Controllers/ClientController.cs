@@ -6,7 +6,7 @@ namespace DataAccessLayer.Controllers
 {
     public class ClientController:DbContext
     {
-        [Route("/Client")]
+        [Route("api/Client")]
         [ApiController]
         public class ClientsController : Controller
         {

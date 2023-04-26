@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using DataAccessLayer.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace DataAccessLayer
 {
@@ -9,10 +8,11 @@ namespace DataAccessLayer
     {
         public DbSet<Client> Clients { get; set; }
         public DbSet<Mentor> Mentors { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Subscription> Subscriptions { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
-            Database.EnsureCreated();
         }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

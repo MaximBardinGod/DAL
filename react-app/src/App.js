@@ -5,8 +5,9 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Navbar from "./components/navbar/Navbar"
 import Footer from "./components/footer/Footer";
 import Home from "./pages/Home";
-import Record from "./pages/Record";
+import Subscription from "./pages/Subscription";
 import Contacts from "./pages/Contacts";
+import { FormRegister } from "./components/form/FormRegister";
 
 
 function App() {
@@ -16,8 +17,9 @@ function App() {
 				<Navbar />
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="/record" element={<Record />} />
+					<Route path="/subscription" element={<Subscription />} />
 					<Route path="/contacts" element={<Contacts />} />
+					<Route path="/register" element={<FormRegister />} />
 				</Routes>
 				<Footer />
 			</Router>
