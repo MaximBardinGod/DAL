@@ -6,13 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Controllers
 {
-    public class MentorController : DbContext
-    {
-        [Route("/Mentor")]
         [ApiController]
-        public class MentorsController : Controller
+        [Route("api/Mentor")]
+        public class MentorsController : ControllerBase
         {
-            private readonly ApplicationContext _context;
+            ApplicationContext _context;
             public MentorsController(ApplicationContext context)
             {
                 _context = context;
@@ -21,13 +19,13 @@ namespace DataAccessLayer.Controllers
             [HttpGet]
             public async Task<ActionResult<IEnumerable<Mentor>>> GetMentors()
             {
-                return await _context.Mentors.ToListAsync();
+                return await _context.Mentor.ToListAsync();
             }
 
             [HttpGet("GetMentor/{id}")]
             public async Task<ActionResult<Mentor>> GetMentor(int id)
             {
-                var mentor = await _context.Mentors.FindAsync(id);
+                var mentor = await _context.Mentor.FindAsync(id);
                 if (mentor == null) return NotFound();
                 return mentor;
             }
@@ -36,7 +34,7 @@ namespace DataAccessLayer.Controllers
             public async Task<ActionResult<Mentor>> PostMentor(Mentor mentor)
             {
                 if (mentor == null) return BadRequest();
-                _context.Mentors.Add(mentor);
+                _context.Mentor.Add(mentor);
                 await _context.SaveChangesAsync();
                 return Ok(mentor);
             }
@@ -54,13 +52,12 @@ namespace DataAccessLayer.Controllers
             [HttpDelete("DeleteMentor/{Id}")]
             public async Task<ActionResult<Mentor>> Delete(int id)
             {
-                var mentor = _context.Mentors.FirstOrDefaultAsync(p => p.MentorId == id);
+                var mentor = _context.Mentor.FirstOrDefaultAsync(p => p.MentorId == id);
                 if (mentor == null) return NotFound();
-                _context.Mentors.Remove(await mentor);
+                _context.Mentor.Remove(await mentor);
                 await _context.SaveChangesAsync();
                 return Ok(mentor);
             } 
 
         }
     }
-}

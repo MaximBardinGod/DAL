@@ -4,11 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Controllers
 {
-    public class ClientController:DbContext
-    {
-        [Route("api/Client")]
         [ApiController]
-        public class ClientsController : Controller
+        [Route("api/Client")]
+        public class ClientsController : ControllerBase
         {
             private readonly ApplicationContext _context;
             public ClientsController(ApplicationContext context)
@@ -19,7 +17,7 @@ namespace DataAccessLayer.Controllers
             [HttpGet]
             public async Task<ActionResult<IEnumerable<Client>>> GetClients()
             {
-                return await _context.Clients.ToListAsync();
+                return await _context.Client.ToListAsync();
             }
 
             [HttpGet("/{id}")]
@@ -27,7 +25,7 @@ namespace DataAccessLayer.Controllers
             {
                 if (id != 0)
                 {
-                    var client = await _context.Clients.FirstOrDefaultAsync(p => p.ClientId == id);
+                    var client = await _context.Client.FirstOrDefaultAsync(p => p.ClientId == id);
                     if (client == null) return NotFound();
                     return client;
                 }
@@ -39,7 +37,7 @@ namespace DataAccessLayer.Controllers
             {
                 if (client != null)
                 {
-                    _context.Clients.Add(client);
+                    _context.Client.Add(client);
                     await _context.SaveChangesAsync();
 
                     return Ok(client);
@@ -51,7 +49,7 @@ namespace DataAccessLayer.Controllers
             [HttpPut("PutClient/{id}")]
             public async Task<IActionResult> PutClient( [FromBody] Client client)
             {
-                if (!_context.Clients.Any(p => p.ClientId == client.ClientId)) return NotFound();
+                if (!_context.Client.Any(p => p.ClientId == client.ClientId)) return NotFound();
 
                 _context.Update(client);
                 await _context.SaveChangesAsync();
@@ -61,12 +59,11 @@ namespace DataAccessLayer.Controllers
             [HttpDelete("DeleteClient/{id}")]
             public async Task<IActionResult> DeleteClient(int id)
             {
-                var _client = _context.Clients.FirstOrDefaultAsync(p => p.ClientId == id);
-                _context.Clients.Remove(await _client);
+                var _client = _context.Client.FirstOrDefaultAsync(p => p.ClientId == id);
+                _context.Client.Remove(await _client);
                 
                 await _context.SaveChangesAsync();
                 return Ok(_client);
             }
         }
     }
-}

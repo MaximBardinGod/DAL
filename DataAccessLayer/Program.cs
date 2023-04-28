@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
 namespace DataAccessLayer {
+
     public class Program
     {
         public static void Main(string[] args)
@@ -15,6 +16,5 @@ namespace DataAccessLayer {
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-    
     }
 }

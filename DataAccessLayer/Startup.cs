@@ -1,9 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 
@@ -11,18 +7,19 @@ namespace DataAccessLayer
 {
     public class Startup
     {
-        public IConfiguration Configuration { get;}
         public Startup(IConfiguration conf) 
         {
             Configuration = conf;
         }
+        public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication();
+            string con = "Server=DESKTOP-DA7Q1O;DataBase=FitnessApp;Trusted_Connection=True;";
+            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(con));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "FitnessApp", Version = "v1.0" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "FitnessApp", Version = "v1" });
             });
         }
 

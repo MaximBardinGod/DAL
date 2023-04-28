@@ -5,7 +5,6 @@ namespace DataAccessLayer.Models
 {
     public class Client
     {
-
         [Key]
         public int ClientId { get; set; }
         public string? NameClient { get; set; }

@@ -1,28 +1,53 @@
-import React, { useEffect, useState } from "react"
+import React, { Component, useEffect, useState } from "react"
 
-const Subscription = () => {
+export default class Subscription extends Component{
 
-  const [sub, setSubs] = useState([])
-
-  const fetchSubData = () => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then(response => {
-        return response.json()
-      })
-      .then(data => {
-        setSubs(data)
-      })
+  constructor(props){
+    super(props);
+    this.state ={
+      error:null,
+      isLoaded:false,
+      items:[]
+    };
   }
 
-  useEffect(() => {
-    fetchSubData()
-  }, [])
+  componentDidMount(){
+    fetch("https://localhost:7028/api/Product")
+    .then(res => res.json())
+    .then(
+      (result) =>{
+        this.setState({
+          isLoaded:true,
+          items:result.products
+        });
+      },
+      (error) =>{
+        this.setState({
+          isLoaded:true,
+          error
+        });
+      }
+    )
+  }
 
-  return (
-    <main>
-      <h1>Subscriptions</h1>
-    </main>
-  );
-};
+  render(){
+    const {error,isLoaded, items} = this.state;
 
-export default Subscription;
+    if (error){
+      return <p> Error {error.message}</p>
+    } else if(!isLoaded){
+      return <p> Loading...</p>
+    } else {
+      return(
+        <ul>
+          {items.map(item =>(
+            <li key={item.nameProd}>
+              {item.countProtein}
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  }
+
+}

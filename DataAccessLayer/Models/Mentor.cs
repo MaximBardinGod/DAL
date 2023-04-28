@@ -13,11 +13,11 @@ namespace DataAccessLayer.Models
         public int MentorId { get; set; }
         public string? NameMentor { get; set; }
         public string? SurnameMentor { get; set; }
-        public string? Post { get; set; }
+        public string? Post { get; set; }   
 
         public List<Client> GetClients(ApplicationContext _context)
         {
-            return _context.Clients.Where(p => p.Mentor.MentorId == MentorId).ToList();
+            return _context.Client.Where(p => p.Mentor.MentorId == MentorId).ToList();
         }
         public Mentor() { }
         public Mentor(int mentorId, string nameMentor, string surnameMentor, string post)

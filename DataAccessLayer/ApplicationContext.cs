@@ -6,23 +6,25 @@ namespace DataAccessLayer
 {
     public class ApplicationContext:DbContext
     {
-        public DbSet<Client> Clients { get; set; }
-        public DbSet<Mentor> Mentors { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Subscription> Subscriptions { get; set; }
+        public DbSet<Client> Client { get; set; }
+        public DbSet<Mentor> Mentor { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<Subscription> Subscription { get; set; }
 
-        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
+        public ApplicationContext(DbContextOptions<ApplicationContext> options)
+           : base(options)
         {
+            Database.EnsureCreated();
         }
-        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var builder = new ConfigurationBuilder();
             builder.SetBasePath(Directory.GetCurrentDirectory());
-            builder.AddJsonFile("appsetting.json");
+            builder.AddJsonFile("appsettings.json");
             var config = builder.Build();
-            
-            optionsBuilder.UseSqlServer("DefaultConnection");
+            string connectionString = config.GetConnectionString("DefaultConnection");
+
+            optionsBuilder.UseSqlServer(connectionString);
         }
     }
 }
