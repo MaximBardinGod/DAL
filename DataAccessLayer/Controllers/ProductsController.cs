@@ -1,4 +1,4 @@
-﻿using DataAccessLayer.Models;
+﻿using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +18,15 @@ namespace DataAccessLayer.Controllers
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
             return await _context.Product.ToListAsync();
+        }
+
+        public async Task<ActionResult<Product[]>> GetProducts2()
+        {
+            return new[]
+            {
+                new Product{ProductId = 1, Name = "Test name", CountFat = 1, CountProtein = 1, CountUgl = 1 },
+                new Product{ProductId = 2, Name = "Test Ivan", CountFat = 2, CountProtein = 2, CountUgl = 2 }
+            };
         }
 
         [HttpGet("GetProduct/{id}")]

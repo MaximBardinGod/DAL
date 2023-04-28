@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using DataAccessLayer.Models;
+using DataAccessLayer.Helpers;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,7 +28,7 @@ namespace DataAccessLayer.Controllers
             {
                 var mentor = await _context.Mentor.FindAsync(id);
                 if (mentor == null) return NotFound();
-                return mentor;
+                return await mentor.WithClients(_context);
             }
             
             [HttpPost("PostMentor")] //api/client/updateMentor

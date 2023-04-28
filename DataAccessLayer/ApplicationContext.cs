@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using DataAccessLayer.Models;
+using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer
@@ -25,6 +25,12 @@ namespace DataAccessLayer
             string connectionString = config.GetConnectionString("DefaultConnection");
 
             optionsBuilder.UseSqlServer(connectionString);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Mentor>().Ignore(m => m.Clients);
         }
     }
 }

@@ -88,3 +88,4 @@ export class FormRegister extends Component {
     console.log(data);
   }
 }
+export default FormRegister;

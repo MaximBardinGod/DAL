@@ -1,11 +1,23 @@
 {
   "Version": 1,
-  "Hash": "afa4nYYAjLzBlnNl0IfWaxNm8Foe6HoaXT2w2UpIgnk=",
+  "Hash": "01i1g+OtGNPE1S8p0uiz5bSA+PHkjfFCwsZyBIya8Zg=",
   "Source": "DataAccessLayer",
   "BasePath": "_content/DataAccessLayer",
   "Mode": "Default",
   "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Users\\Maxim\\Documents\\Kursach\\Domain\\Domain.csproj",
+      "Version": 2,
+      "Source": "Domain",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
   "DiscoveryPatterns": [],
   "Assets": []
 }
