@@ -20,7 +20,8 @@ namespace DataAccessLayer.Controllers
             return await _context.Product.ToListAsync();
         }
 
-        public async Task<ActionResult<Product[]>> GetProducts2()
+        [HttpGet]
+        public async Task<ActionResult<Product[]>> GetProductsFill()
         {
             return new[]
             {

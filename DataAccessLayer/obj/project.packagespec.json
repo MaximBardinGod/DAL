@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "F:\\Kursach\\DataAccessLayer\\DataAccessLayer.csproj",
+    "projectUniqueName": "C:\\Users\\Maxim\\Documents\\Kursach\\DataAccessLayer\\DataAccessLayer.csproj",
     "projectName": "DataAccessLayer",
-    "projectPath": "F:\\Kursach\\DataAccessLayer\\DataAccessLayer.csproj",
-    "outputPath": "F:\\Kursach\\DataAccessLayer\\obj\\",
+    "projectPath": "C:\\Users\\Maxim\\Documents\\Kursach\\DataAccessLayer\\DataAccessLayer.csproj",
+    "outputPath": "C:\\Users\\Maxim\\Documents\\Kursach\\DataAccessLayer\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -18,7 +18,11 @@
     },
     "frameworks": {
       "netcoreapp7.0": {
-        "projectReferences": {}
+        "projectReferences": {
+          "C:\\Users\\Maxim\\Documents\\Kursach\\Domain\\Domain.csproj": {
+            "projectPath": "C:\\Users\\Maxim\\Documents\\Kursach\\Domain\\Domain.csproj"
+          }
+        }
       }
     },
     "warningProperties": {
@@ -38,9 +42,19 @@
           "target": "Package",
           "version": "[7.0.4, )"
         },
+        "Microsoft.EntityFrameworkCore.Design": {
+          "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[7.0.0, )"
+        },
         "Microsoft.EntityFrameworkCore.SqlServer": {
           "target": "Package",
-          "version": "[7.0.4, )"
+          "version": "[7.0.0, )"
+        },
+        "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+          "target": "Package",
+          "version": "[7.0.0, )"
         },
         "Swashbuckle.AspNetCore": {
           "target": "Package",
@@ -66,7 +80,7 @@
           "privateAssets": "all"
         }
       },
-      "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+      "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
     }
   }
 }

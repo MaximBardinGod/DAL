@@ -11,7 +11,7 @@ export default class Subscription extends Component {
   }
 
   componentDidMount() {
-    fetch("https://localhost:7028/api/Product/")
+    fetch("/api/Product/")
       .then((res) => res.json())
       .then(
         (result) => {
@@ -31,10 +31,7 @@ export default class Subscription extends Component {
 
   render() {
     const { error, isLoaded, items } = this.state;
-    fetch("https://localhost:7028/api/Product/")
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.error(error));
+
     if (error) {
       return <p> Error {error.message}</p>;
     } else if (!isLoaded) {
