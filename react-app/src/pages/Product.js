@@ -1,22 +1,25 @@
 import { useEffect, useState } from "react";
 import {
-  Table,
   Form,
-  InputGroup,
-  SplitButton,
+  Table,
+  DropdownButton,
   Dropdown,
+  Button,
 } from "react-bootstrap";
 
 export default function Product() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("/api/Domain/Product")
+    fetch("/api/Domain/Product${id}")
       .then((res) => res.json())
       .then((res) => {
         setData(res);
       });
   }, []);
+
+  const [id,setId] = useState(1)
+
 
   return (
     <div>
@@ -43,22 +46,16 @@ export default function Product() {
           })}
         </tbody>
       </Table>
-      <div>
+      <div style={{}}>
         <h3>Фильтр</h3>
-        <InputGroup className="mb-3">
-          <SplitButton
-            variant="outline-secondary"
-            title="Action"
-            id="segmented-button-dropdown-1"
-          >
-            <Dropdown.Item href="#">Name</Dropdown.Item>
-            <Dropdown.Item href="#">Count protein</Dropdown.Item>
-            <Dropdown.Item href="#">Count fat</Dropdown.Item>
-            <Dropdown.Item href="#">Count uglevod</Dropdown.Item>
-            <Dropdown.Divider />
-          </SplitButton>
-          <Form.Control aria-label="Text input with dropdown button" />
-        </InputGroup>
+        <Form.Control 
+          id="id" 
+          type="id" 
+          placeholder="Enter id" 
+          style={{width:200}} 
+          value={id}
+          onChange={event => setId(event.target.value)}
+        />
       </div>
     </div>
   );

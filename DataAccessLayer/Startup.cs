@@ -14,7 +14,7 @@ namespace DataAccessLayer
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
-            string con = "Server=KOMPUTER\\SQLEXPRESS;DataBase=FitnessApp;Trusted_Connection=True;";
+            string con = "Server=DESKTOP-DA7Q1OV;DataBase=FitnessApp;Trusted_Connection=True;";
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(con));
             services.AddControllers();
             services.AddSwaggerGen(c =>

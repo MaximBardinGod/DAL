@@ -32,5 +32,21 @@ namespace Domain.Controllers
                 PropertyNameCaseInsensitive = true
             }) ?? Array.Empty<Product>();
         }
+
+        [HttpGet("ProductId={id}")]
+        public async Task<ActionResult<Product[]>> GetProduct(int id)
+        {
+            var response = await _client.GetAsync($"{_dalUrl}/api/DAL/Product");
+            _client.
+            response.EnsureSuccessStatusCode();
+            var content = await response.Content.ReadAsStringAsync();
+            if (content == null) return NotFound();
+
+            return JsonSerializer.Deserialize<Product[]>(content, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            }) ?? Array.Empty<Product>();
+        }
+
     }
 }

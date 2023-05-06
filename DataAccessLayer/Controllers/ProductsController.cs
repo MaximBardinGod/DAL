@@ -30,7 +30,7 @@ namespace DataAccessLayer.Controllers
             };
         }
 
-        [HttpGet("GetProduct/{id}")]
+        [HttpGet("GetProduct/id={id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
             var product = await _context.Product.FindAsync(id);
