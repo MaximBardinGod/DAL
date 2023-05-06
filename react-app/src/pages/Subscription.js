@@ -4,7 +4,6 @@ export default class Subscription extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null,
       isLoaded: false,
       items: [],
     };
@@ -13,37 +12,25 @@ export default class Subscription extends Component {
   componentDidMount() {
     fetch("/api/Domain/Product")
       .then((res) => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            items: result.products,
-          });
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error,
-          });
-        }
-      );
+      .then(({ items }) => {
+        this.setState({
+          isLoaded: true,
+          items,
+        });
+      });
   }
 
   render() {
-    const { error, isLoaded, items } = this.state;
-
-    if (error) {
-      return <p> Error {error.message}</p>;
-    } else if (!isLoaded) {
-      return <p> Loading...</p>;
-    } else {
-      return (
+    var { isLoaded, items } = this.state;
+    if (!isLoaded) return <div>Loading...</div>;
+    return (
+      <div>
         <ul>
-          {items.map((item) => (
-            <li key={item.nameProd}>{item.countProtein}</li>
+          {items.map(({ productId, statistics }) => (
+            <li key={productId}>Total views: {statistics.name}</li>
           ))}
         </ul>
-      );
-    }
+      </div>
+    );
   }
 }
