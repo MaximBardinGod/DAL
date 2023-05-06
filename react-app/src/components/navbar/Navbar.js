@@ -55,6 +55,16 @@ const Navbar = () => {
 								Register
 							</NavLink>
 						</li>
+						<li className="nav-list__item">
+							<NavLink
+								to="/product"
+								className={({ isActive }) =>
+									isActive ? activeLink : normalLink
+								}
+							>
+								Product
+							</NavLink>
+						</li>
 					</ul>
 				</div>
 			</div>

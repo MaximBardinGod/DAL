@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "Hash": "01i1g+OtGNPE1S8p0uiz5bSA+PHkjfFCwsZyBIya8Zg=",
+  "Hash": "J8dBezMJo25GSJlXKdIeWQQrbOFGoQwB7HVJ6XPafVY=",
   "Source": "DataAccessLayer",
   "BasePath": "_content/DataAccessLayer",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "C:\\Users\\Maxim\\Documents\\Kursach\\Domain\\Domain.csproj",
+      "Identity": "F:\\Kursach\\Domain\\Domain.csproj",
       "Version": 2,
       "Source": "Domain",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",

@@ -630,3 +630,8 @@ C:\Users\Maxim\Documents\Kursach\DataAccessLayer\bin\Debug\net7.0\Domain.runtime
 C:\Users\Maxim\Documents\Kursach\DataAccessLayer\bin\Debug\net7.0\Domain.exe
 C:\Users\Maxim\Documents\Kursach\DataAccessLayer\bin\Debug\net7.0\Domain.dll
 C:\Users\Maxim\Documents\Kursach\DataAccessLayer\bin\Debug\net7.0\Domain.pdb
+F:\Kursach\DataAccessLayer\bin\Debug\net7.0\Domain.deps.json
+F:\Kursach\DataAccessLayer\bin\Debug\net7.0\Domain.runtimeconfig.json
+F:\Kursach\DataAccessLayer\bin\Debug\net7.0\Domain.exe
+F:\Kursach\DataAccessLayer\bin\Debug\net7.0\Domain.dll
+F:\Kursach\DataAccessLayer\bin\Debug\net7.0\Domain.pdb

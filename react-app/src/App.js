@@ -7,6 +7,7 @@ import Footer from "./components/footer/Footer";
 import Home from "./pages/Home";
 import Subscription from "./pages/Subscription";
 import Contacts from "./pages/Contacts";
+import Product from "./pages/Product";
 import { FormRegister } from "./components/form/FormRegister";
 
 
@@ -20,6 +21,7 @@ function App() {
 					<Route path="/subscription" element={<Subscription />} />
 					<Route path="/contacts" element={<Contacts />} />
 					<Route path="/register" element={<FormRegister />} />
+					<Route path="/product" element={<Product />} />
 				</Routes>
 				<Footer />
 			</Router>
