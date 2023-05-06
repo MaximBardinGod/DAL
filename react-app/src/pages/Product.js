@@ -1,4 +1,11 @@
-import Table from 'react-bootstrap/Table';
+import { Component } from "react";
+import Table from "react-bootstrap/Table";
+
+//let response = await fetch("/api/Domain/Product");
+//let commits = await response.json();
+//alert(response.headers.get("Content-Type"));
+
+export default class Products extends Component
 
 function StripedColumnsExample() {
   return (

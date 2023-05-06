@@ -1,11 +1,13 @@
 ﻿using Domain.Models;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 
-namespace DataAccessLayer.Controllers
+namespace Domain.Controllers
 {
     [ApiController]
-    [Route("api/Product")]
+    [Microsoft.AspNetCore.Mvc.Route("api/Domain/Product")]
     public class ProductsController : ControllerBase
     {
         private readonly string? _dalUrl;
@@ -20,17 +22,15 @@ namespace DataAccessLayer.Controllers
         [HttpGet]
         public async Task<ActionResult<Product[]>> GetProducts()
         {
-            var response = await _client.GetAsync($"{_dalUrl}/api/Product");
+            var response = await _client.GetAsync($"{_dalUrl}/api/DAL/Product");
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
             if (content == null) return NotFound();
-            return JsonSerializer.Deserialize<Product[]>(content);
-
-            //return new[]
-            //{
-            //    new Product{ProductId = 1, Name = "Test name", CountFat = 1, CountProtein = 1, CountUgl = 1 },
-            //    new Product{ProductId = 2, Name = "Test Ivan", CountFat = 2, CountProtein = 2, CountUgl = 2 }
-            //};
+            
+            return JsonSerializer.Deserialize<Product[]>(content, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            }) ?? Array.Empty<Product>();
         }
     }
 }

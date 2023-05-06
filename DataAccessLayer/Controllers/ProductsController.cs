@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace DataAccessLayer.Controllers
 {
     [ApiController]
-    [Route("api/Product")]
+    [Route("api/DAL/Product")]
     public class ProductsController : ControllerBase
     {
         ApplicationContext _context;
@@ -20,7 +20,7 @@ namespace DataAccessLayer.Controllers
             return await _context.Product.ToListAsync();
         }
 
-        [HttpGet("GetProducts")]
+        [HttpGet("GetProductsFill")]
         public async Task<ActionResult<Product[]>> GetProductsFill()
         {
             return new[]

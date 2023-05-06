@@ -11,7 +11,7 @@ export default class Subscription extends Component {
   }
 
   componentDidMount() {
-    fetch("/api/Product/")
+    fetch("/api/Domain/Product")
       .then((res) => res.json())
       .then(
         (result) => {
