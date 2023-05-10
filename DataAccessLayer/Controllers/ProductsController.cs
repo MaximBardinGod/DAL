@@ -1,71 +1,63 @@
 ﻿using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using DataAccessLayer.Services;
 
-namespace DataAccessLayer.Controllers
+namespace DataAccessLayer.Controllers;
+
+[ApiController]
+[Route("api/DAL/Product")]
+public class ProductsController : ControllerBase
 {
-    [ApiController]
-    [Route("api/DAL/Product")]
-    public class ProductsController : ControllerBase
+    private readonly ILogger<ProductsController> _logger;
+    private readonly IServicesProduct _servicesProduct;
+
+    public ProductsController(ILogger<ProductsController> logger, IServicesProduct servicesProduct)
     {
-        ApplicationContext _context;
-        public ProductsController(ApplicationContext context)
-        {
-            _context = context;
-        }
+        _logger = logger;
+        _servicesProduct = servicesProduct;
+    }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
-        {
-            return await _context.Product.ToListAsync();
-        }
+    [HttpGet("ProductList")]
+    public async Task<IActionResult> ProductList()
+    {
+        var product = await _servicesProduct.GetProduct();
+        if (product == null) return NotFound();
+        return Ok(product);
+    }
 
-        [HttpGet("GetProductsFill")]
-        public async Task<ActionResult<Product[]>> GetProductsFill()
-        {
-            return new[]
-            {
-                new Product{ProductId = 1, Name = "Test name", CountFat = 1, CountProtein = 1, CountUgl = 1 },
-                new Product{ProductId = 2, Name = "Test Ivan", CountFat = 2, CountProtein = 2, CountUgl = 2 }
-            };
-        }
+    [HttpGet("GetProductById/id={id}")]
+    public async Task<IActionResult> ProductGet(int id) 
+    {
+        var product = await _servicesProduct.GetProductById(id);
+        return Ok(product);
+    }
 
-        [HttpGet("GetProduct/id={id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
-        {
-            var product = await _context.Product.FindAsync(id);
-            if (product == null) return NotFound();
-            return product;
-        }
+    [HttpGet("GetProductById/name={name}")]
+    public async Task<IActionResult> ProductGet(string name)
+    {
+        var product = await _servicesProduct.GetProductByName(name);
+        return Ok(product);
+    }
 
-        [HttpPost("PostProduct")]
-        public async Task<ActionResult<Product>> PostProduct(Product product)
-        {
-            if (product == null) return BadRequest();
-            _context.Product.Add(product);
-            await _context.SaveChangesAsync();
-            return Ok(product);
-        }
+    [HttpPost("AddProduct")]
+    public async Task<IActionResult> AddProduct(Product product)
+    {
+        var result = await _servicesProduct.AddProduct(product);
+        return Ok(result);
+    }
 
-        [HttpPut("PutProduct")]
-        public async Task<ActionResult<Product>> Put(Product product)
-        {
-            if (product == null) return BadRequest();
+    [HttpPut("UpdateProduct")]
+    public async Task<IActionResult> UpdateProduct(Product product)
+    {
+        var result = await _servicesProduct.UpdateProduct(product);
+        return Ok(result);
+    }
 
-            _context.Update(product);
-            await _context.SaveChangesAsync();
-            return Ok(product);
-        }
-
-        [HttpDelete("DeleteProduct/{Id}")]
-        public async Task<ActionResult<Product>> Delete(int id)
-        {
-            var product = _context.Product.FirstOrDefaultAsync(p => p.ProductId == id);
-            if (product == null) return NotFound();
-            _context.Product.Remove(await product);
-            await _context.SaveChangesAsync();
-            return Ok(product);
-        }
-
+    [HttpDelete("DeleteProduct/{Id}")]
+    public async Task<IActionResult> DeleteProduct(int id)
+    {
+        var result = await _servicesProduct.DeleteProduct(id);
+        return Ok(result);
     }
 }

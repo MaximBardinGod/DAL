@@ -9,16 +9,16 @@ import {
 
 export default function Product() {
   const [data, setData] = useState([]);
+  const [id,setId] = useState(1)
 
   useEffect(() => {
-    fetch("/api/Domain/Product${id}")
+    fetch("/api/Domain/Product")
       .then((res) => res.json())
       .then((res) => {
         setData(res);
       });
   }, []);
 
-  const [id,setId] = useState(1)
 
 
   return (

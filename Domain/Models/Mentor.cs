@@ -9,5 +9,5 @@ public class Mentor
     public string? SurnameMentor { get; set; }
     public string? Post { get; set; }
 
-    public List<Client> Clients { get; set; }
+    public List<Client>? Clients { get; set; }
 }

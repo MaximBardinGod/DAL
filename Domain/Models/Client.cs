@@ -12,4 +12,6 @@ public class Client
     public int MentorId { get; set; }
 
     public Mentor? Mentor { get; set; }
+
+    public List<Subscription>? Subscriptions { get; set;}
 }
