@@ -27,9 +27,12 @@ public class ProductServices : IServicesProduct
         return product != null ? true : false;
     }
 
-    public async Task<IEnumerable<Product>> GetProduct()
+    public async Task<IEnumerable<Product>> GetProduct(string? name)
     {
-        return await _db.Product.ToListAsync();
+        IQueryable<Product> query = _db.Product;
+        if (!string.IsNullOrWhiteSpace(name))
+            query = query.Where(p => p.Name != null && p.Name.Contains(name));
+        return await query.ToListAsync();
     }
 
     public async Task<Product> GetProductById(int id)
