@@ -8,13 +8,14 @@ export class FormRegister extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      nameClient: "",
-      login: "",
-      password: "",
+      nameProduct: "",
+      countProtein: "",
+      countUglevod: "",
+      countFat: "",
     };
 
     this.onInputChange = this.onInputChange.bind(this);
-    this.sendClientData = this.sendClientData.bind(this);
+    this.sendProductData = this.sendProductData.bind(this);
   }
 
   onInputChange(event) {
@@ -24,30 +25,40 @@ export class FormRegister extends Component {
   }
 
   render() {
+
     return (
       <div>
-        <h1 style={{ padding: "10px" }}>Форма для заполнения</h1>
+        <h1 style={{ padding: "10px" }}>Форма для заполнения продукта</h1>
 
         <Form style={{ padding: "10px" }}>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputName">Name</label>
               <input
-                type="Name"
+                type="text"
                 class="form-control"
                 id="inputName"
                 placeholder=""
+                value={this.state.nameProduct}
+                name="nameProduct"
+                onChange={this.onInputChange}
               />
             </div>
           </div>
           <div class="form-group col-md-6">
-            <label for="inputLogin">Login</label>
-            <input type="text" class="form-control" id="inputLogin" />
+            <label for="inputProtein">Count protein</label>
+            <input type="text" class="form-control" id="inputProtein" placeholder="" value={this.state.countProtein} name="countProtein" onChange={this.onInputChange}/>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="inputPassword">Password</label>
-              <input type="text" class="form-control" id="inputINN" />
+              <label for="inputUglevod">Count uglevod</label>
+              <input type="text" class="form-control" id="inputUglevod" placeholder="" value={this.state.countUglevod} name="countUglevod" onChange={this.onInputChange}/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputFat">Count fat</label>
+              <input type="text" class="form-control" id="inputFat" placeholder="" value={this.state.countFat} name="countFat" onChange={this.onInputChange}/>
             </div>
           </div>
 
@@ -55,6 +66,7 @@ export class FormRegister extends Component {
             variant="success"
             class="f-button "
             style={{ marginTop: "10px" }}
+            onClick={this.sendProductData}
           >
             {" "}
             Success
@@ -64,23 +76,23 @@ export class FormRegister extends Component {
     );
   }
 
-  async sendClientData() {
-    let client = {
-      NameClient: this.state.nameClient,
-      Login: this.state.login,
-      Password: this.state.password,
+  async sendProductData() {
+    let product = {
+      "name": this.state.nameProduct,
+      "countProtein": this.state.countProtein,
+      "countUglevod": this.state.countUglevod,
+      "countFat": this.state.countFat,
     };
-    console.log(client);
+    console.log(product);
 
     const reponse = await fetch(
-      "https://localhost:7134/api/admin/client/create",
+      "/api/Domain/Product",
       {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          Authorization: "Basic dGVzdDp0ZXN0Mg==",
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(client),
+        body: JSON.stringify(product),
       }
     );
 

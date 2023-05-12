@@ -1,6 +1,7 @@
 ﻿using Domain.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
@@ -32,7 +33,17 @@ public class ProductsController : ControllerBase
             PropertyNameCaseInsensitive = true
         }) ?? Array.Empty<Product>();
     }
-    
+
+    [HttpPost]
+    public async Task<ActionResult<Product[]>> PostProduct(Product product)
+    {
+        JsonContent content = JsonContent.Create(product);
+        using var result = await _client.PostAsync($"{_dalUrl}/api/DAL/Product/AddProduct",content);
+        var person = await result.Content.ReadFromJsonAsync<Product>();
+        Console.WriteLine($"{person?.Name}");
+        return Ok(result);
+    }
+
     [HttpGet("ProductId={id}")]
     public async Task<ActionResult<Product[]>> GetProduct(int id)
     {
