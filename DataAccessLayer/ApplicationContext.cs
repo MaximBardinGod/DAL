@@ -10,6 +10,7 @@ public class ApplicationContext:DbContext
     public DbSet<Mentor> Mentor { get; set; }
     public DbSet<Product> Product { get; set; }
     public DbSet<Subscription> Subscription { get; set; }
+    public DbSet<SubscriptionStyle> SubscriptionStyle { get; set; }
 
     public ApplicationContext(DbContextOptions<ApplicationContext> options)
        : base(options)

@@ -56,6 +56,7 @@ export default function Product() {
           value={id}
           onChange={event => setId(event.target.value)}
         />
+        <Button href="/product/{id}">Найти</Button>
       </div>
     </div>
   );

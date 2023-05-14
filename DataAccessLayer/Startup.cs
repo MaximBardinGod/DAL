@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using DataAccessLayer.Services;
+using DataAccessLayer.Repositories;
 
 namespace DataAccessLayer;
 
@@ -13,10 +14,10 @@ public class Startup
     public IConfiguration Configuration { get; }
     public void ConfigureServices(IServiceCollection services)
     {
-        string con = "Server=KOMPUTER\\SQLEXPRESS;DataBase=FitnessApp;Trusted_Connection=True;";
+        string con = "Server=DESKTOP-DA7Q1OV;DataBase=FitnessApp;Trusted_Connection=True;";
         services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(con));
         services.AddControllers();
-        services.AddScoped<IServicesProduct,ProductServices>();
+        services.AddScoped<IRepository, Repository>();
         services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "FitnessApp", Version = "v1" });

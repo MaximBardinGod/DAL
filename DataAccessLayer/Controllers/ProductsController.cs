@@ -1,7 +1,7 @@
 ﻿using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using DataAccessLayer.Services;
+using DataAccessLayer.Repositories;
 
 namespace DataAccessLayer.Controllers;
 
@@ -10,9 +10,9 @@ namespace DataAccessLayer.Controllers;
 public class ProductsController : ControllerBase
 {
     private readonly ILogger<ProductsController> _logger;
-    private readonly IServicesProduct _servicesProduct;
+    private readonly IRepository _servicesProduct;
 
-    public ProductsController(ILogger<ProductsController> logger, IServicesProduct servicesProduct)
+    public ProductsController(ILogger<ProductsController> logger, IRepository servicesProduct)
     {
         _logger = logger;
         _servicesProduct = servicesProduct;
