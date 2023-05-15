@@ -1,36 +1,33 @@
 import React, { Component, useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 
-export default class Subscription extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoaded: false,
-      items: [],
-    };
-  }
+export default function Subscription() {
+  const [data, setData] = useState([]);
 
-  componentDidMount() {
-    fetch("/api/Domain/Product")
+  useEffect(() => {
+    fetch("/api/Domain/SubscriptionStyle")
       .then((res) => res.json())
-      .then(({ items }) => {
-        this.setState({
-          isLoaded: true,
-          items,
-        });
+      .then((res) => {
+        setData(res);
       });
-  }
+  }, []);
 
-  render() {
-    var { isLoaded, items } = this.state;
-    if (!isLoaded) return <div>Loading...</div>;
-    return (
-      <div>
-        <ul>
-          {items.map(({ productId, statistics }) => (
-            <li key={productId}>Total views: {statistics.name}</li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h1>Subscription:</h1>
+      {data.map((post) => {
+        return (
+          <div>
+            <strong>
+              {post.subscriptionStyleId}. {post.nameSubscription} - {post.cost}
+            </strong>
+            <div>
+              {post.description}
+              <Button style={{ marginLeft: 40 }}>Buy</Button>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
 }
