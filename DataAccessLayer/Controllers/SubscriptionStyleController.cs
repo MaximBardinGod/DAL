@@ -27,37 +27,37 @@ public class SubscriptionStyleController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> ProductGet(int id)
+    public async Task<IActionResult> SubscriptionStyleGet(int id)
     {
-        var product = await _servicesProduct.GetProductById(id);
-        return Ok(product);
+        var subscriptionStyle = await _repositories.GetSubscriptionStyleById(id);
+        return Ok(subscriptionStyle);
     }
 
-    [HttpGet("GetProductById/name={name}")]
-    public async Task<IActionResult> ProductGet(string name)
+    [HttpGet("{name}")]
+    public async Task<IActionResult> SubscriptionStyleGet(string name)
     {
-        var product = await _servicesProduct.GetProductByName(name);
-        return Ok(product);
+        var subscriptionStyle = await _repositories.GetSubscriptionStyleByName(name);
+        return Ok(subscriptionStyle);
     }
 
-    [HttpPost("AddProduct")]
-    public async Task<IActionResult> AddProduct(Product product)
+    [HttpPost("AddSubscriptionStyle")]
+    public async Task<IActionResult> AddSubscriptionStyle(SubscriptionStyle subscriptionStyle)
     {
-        var result = await _servicesProduct.AddProduct(product);
+        var result = await _repositories.AddSubscriptionStyle(subscriptionStyle);
         return Ok(result);
     }
 
-    [HttpPut("UpdateProduct")]
-    public async Task<IActionResult> UpdateProduct(Product product)
+    [HttpPut("UpdateSubscriptionStyle")]
+    public async Task<IActionResult> UpdateSubscriptionStyle(SubscriptionStyle subscriptionStyle)
     {
-        var result = await _servicesProduct.UpdateProduct(product);
+        var result = await _repositories.UpdateSubscriptionStyle(subscriptionStyle);
         return Ok(result);
     }
 
-    [HttpDelete("DeleteProduct/{Id}")]
-    public async Task<IActionResult> DeleteProduct(int id)
+    [HttpDelete("Delete/{Id}")]
+    public async Task<IActionResult> DeleteSubscriptionStyle(int id)
     {
-        var result = await _servicesProduct.DeleteProduct(id);
+        var result = await _repositories.DeleteSubscriptionStyle(id);
         return Ok(result);
     }
 }
