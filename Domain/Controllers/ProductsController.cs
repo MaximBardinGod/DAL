@@ -1,6 +1,8 @@
 ﻿using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
 using System.Text.Json;
+using System.Xml.Linq;
 
 namespace Domain.Controllers;
 
@@ -16,9 +18,22 @@ public class ProductsController : ControllerBase
         _dalUrl = conf.GetValue<string>("DalUrl");
         _client = new HttpClient();
     }
-
+    
     [HttpGet]
-    public async Task<ActionResult<Product[]>> GetProducts(string? name)
+    public async Task<ActionResult<Product[]>> GetProducts()
+    {
+        var response = await _client.GetAsync($"{_dalUrl}/api/DAL/Product/ProductList");
+            response.EnsureSuccessStatusCode();
+        var content = await response.Content.ReadAsStringAsync();
+        if (content == null) return NotFound();
+            return JsonSerializer.Deserialize<Product[]>(content, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            }) ?? Array.Empty<Product>();
+    }
+
+    [HttpGet("ProductList")]
+    public async Task<ActionResult<Product[]>> GetProductsByname(string? name)
     {
         var response = await _client.GetAsync($"{_dalUrl}/api/DAL/Product/ProductList?name={name}");
         response.EnsureSuccessStatusCode();

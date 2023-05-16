@@ -1,23 +1,45 @@
+import { getValue } from "@testing-library/user-event/dist/utils";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import {
   Form,
   Table,
-  DropdownButton,
-  Dropdown,
   Button,
+  FormControl,
 } from "react-bootstrap";
 
 export default function Product() {
   const [data, setData] = useState([]);
-  const [id,setId] = useState(1)
+
+  const [name,setName] = useState('')
+  const [tempValue, setTempValue] = useState('');
+
+  const handleButtonClick = () => {
+    setTempValue(name);
+  };
+
+  const params = {
+    name: name,
+  };
+  
+  const queryString = params
+    ? Object.keys(params)
+        .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
+        .join('&')
+    : '';
+
+  const baseUrl = '/api/Domain/Product';
+
+  const url = queryString ? `${baseUrl}/ProductList?${queryString}` : baseUrl;
 
   useEffect(() => {
-    fetch("/api/Domain/Product")
-      .then((res) => res.json())
-      .then((res) => {
-        setData(res);
-      });
-  }, []);
+    const fetchData = async() => {
+      const response = await axios.get(url)
+
+      setData(response.data)
+    }
+    fetchData()
+  }, [tempValue]);
 
 
 
@@ -30,7 +52,7 @@ export default function Product() {
             <th>Name</th>
             <th>Count protein</th>
             <th>Count fat</th>
-            <th>Count uglevod</th>
+            <th>Count Carbohydrate</th>
           </tr>
         </thead>
         <tbody>
@@ -47,16 +69,15 @@ export default function Product() {
         </tbody>
       </Table>
       <div style={{}}>
-        <h3>Фильтр</h3>
-        <Form.Control 
-          id="id" 
-          type="id" 
-          placeholder="Enter id" 
+        <h3>Filter</h3>
+        <input
+          type="text" 
+          placeholder="Enter name" 
           style={{width:200}} 
-          value={id}
-          onChange={event => setId(event.target.value)}
+          value={name}
+          onChange={event => setName(event.target.value)}
         />
-        <Button href="/product/{id}">Найти</Button>
+        <Button onClick={handleButtonClick}>Find</Button>
       </div>
     </div>
   );
