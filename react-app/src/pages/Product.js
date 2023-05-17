@@ -1,4 +1,3 @@
-import { getValue } from "@testing-library/user-event/dist/utils";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {
@@ -28,9 +27,9 @@ export default function Product() {
         .join('&')
     : '';
 
-  const baseUrl = '/api/Domain/Product';
+  const baseUrl = '/api/Domain/Product/ProductList';
 
-  const url = queryString ? `${baseUrl}/ProductList?${queryString}` : baseUrl;
+  const url = queryString ? `${baseUrl}?${queryString}` : baseUrl;
 
   useEffect(() => {
     const fetchData = async() => {
@@ -68,7 +67,7 @@ export default function Product() {
           })}
         </tbody>
       </Table>
-      <div style={{}}>
+      <div>
         <h3>Filter</h3>
         <input
           type="text" 

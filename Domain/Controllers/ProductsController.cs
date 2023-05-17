@@ -19,19 +19,6 @@ public class ProductsController : ControllerBase
         _client = new HttpClient();
     }
     
-    [HttpGet]
-    public async Task<ActionResult<Product[]>> GetProducts()
-    {
-        var response = await _client.GetAsync($"{_dalUrl}/api/DAL/Product/ProductList");
-            response.EnsureSuccessStatusCode();
-        var content = await response.Content.ReadAsStringAsync();
-        if (content == null) return NotFound();
-            return JsonSerializer.Deserialize<Product[]>(content, new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            }) ?? Array.Empty<Product>();
-    }
-
     [HttpGet("ProductList")]
     public async Task<ActionResult<Product[]>> GetProductsByname(string? name)
     {
