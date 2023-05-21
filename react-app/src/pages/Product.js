@@ -1,10 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {
-  Form,
   Table,
   Button,
-  FormControl,
 } from "react-bootstrap";
 
 export default function Product() {
