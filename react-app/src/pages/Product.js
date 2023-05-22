@@ -41,8 +41,9 @@ export default function Product() {
 
 
   return (
-    <div>
+    <div className="">
       <h1>Products:</h1>
+      <div className="lds-dual-ring">
       <Table striped bordered hover variant="dark" style={{ width: 600 }}>
         <thead>
           <tr>
@@ -65,11 +66,12 @@ export default function Product() {
           })}
         </tbody>
       </Table>
-      <div>
+      </div>
+      <div className="div-filter1">
         <h3>Filter</h3>
         <input
           type="text" 
-          placeholder="Enter name" 
+          placeholder="Enter name product" 
           style={{width:200}} 
           value={name}
           onChange={event => setName(event.target.value)}
