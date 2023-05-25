@@ -41,7 +41,8 @@ export default function Product() {
 
 
   return (
-    <div className="">
+    <div className="table-get-product">
+      <div className="content-table">
       <h1>Products:</h1>
       <div className="lds-dual-ring">
       <Table striped bordered hover variant="dark" style={{ width: 600 }}>
@@ -77,6 +78,7 @@ export default function Product() {
           onChange={event => setName(event.target.value)}
         />
         <Button onClick={handleButtonClick}>Find</Button>
+      </div>
       </div>
     </div>
   );

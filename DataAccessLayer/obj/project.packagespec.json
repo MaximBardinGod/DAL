@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "C:\\Users\\Maxim\\Documents\\Kursach\\DataAccessLayer\\DataAccessLayer.csproj",
+    "projectUniqueName": "F:\\Kursach\\DataAccessLayer\\DataAccessLayer.csproj",
     "projectName": "DataAccessLayer",
-    "projectPath": "C:\\Users\\Maxim\\Documents\\Kursach\\DataAccessLayer\\DataAccessLayer.csproj",
-    "outputPath": "C:\\Users\\Maxim\\Documents\\Kursach\\DataAccessLayer\\obj\\",
+    "projectPath": "F:\\Kursach\\DataAccessLayer\\DataAccessLayer.csproj",
+    "outputPath": "F:\\Kursach\\DataAccessLayer\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -14,13 +14,14 @@
     ],
     "sources": {
       "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+      "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
       "https://api.nuget.org/v3/index.json": {}
     },
     "frameworks": {
       "netcoreapp7.0": {
         "projectReferences": {
-          "C:\\Users\\Maxim\\Documents\\Kursach\\Domain\\Domain.csproj": {
-            "projectPath": "C:\\Users\\Maxim\\Documents\\Kursach\\Domain\\Domain.csproj"
+          "F:\\Kursach\\Domain\\Domain.csproj": {
+            "projectPath": "F:\\Kursach\\Domain\\Domain.csproj"
           }
         }
       }
@@ -80,7 +81,7 @@
           "privateAssets": "all"
         }
       },
-      "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+      "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
     }
   }
 }

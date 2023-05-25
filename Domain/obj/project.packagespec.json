@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "C:\\Users\\Maxim\\Documents\\Kursach\\Domain\\Domain.csproj",
+    "projectUniqueName": "F:\\Kursach\\Domain\\Domain.csproj",
     "projectName": "Domain",
-    "projectPath": "C:\\Users\\Maxim\\Documents\\Kursach\\Domain\\Domain.csproj",
-    "outputPath": "C:\\Users\\Maxim\\Documents\\Kursach\\Domain\\obj\\",
+    "projectPath": "F:\\Kursach\\Domain\\Domain.csproj",
+    "outputPath": "F:\\Kursach\\Domain\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -14,6 +14,7 @@
     ],
     "sources": {
       "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+      "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
       "https://api.nuget.org/v3/index.json": {}
     },
     "frameworks": {
@@ -58,7 +59,7 @@
           "privateAssets": "all"
         }
       },
-      "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+      "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
     }
   }
 }
