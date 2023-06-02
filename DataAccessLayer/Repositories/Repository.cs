@@ -66,7 +66,7 @@ public class Repository : IRepository
         var subscriptionStyle = await GetSubscriptionStyleById(id);
         _db.Remove(subscriptionStyle);
         await _db.SaveChangesAsync();
-        return subscriptionStyle != null ? true : false;
+        return subscriptionStyle != null;
     }
 
     public async Task<IEnumerable<SubscriptionStyle>> GetSubscriptionsStyle()
